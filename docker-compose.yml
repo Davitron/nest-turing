@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  api:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    image: nest-api
+    ports:
+      - 3002:3002
+    volumes:
+      - .:/usr/local/api
+    container_name: nest-api
+  app-doc:
+    build:
+      context: .
+      dockerfile: ./docker/app-doc/Dockerfile
+    container_name: nest-api-doc
+    ports:
+      - 9000:9000
+    volumes:
+      - .:/usr/local/api
